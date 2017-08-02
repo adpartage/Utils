@@ -33,14 +33,18 @@ namespace MyNamespace
         {
             var currentAssembly = GetType().Assembly;
             if(!_registrationService.RegisterAssembly(currentAssembly, AssemblyRegistrationFlags.SetCodeBase))
+            {
                 throw new InstallException($"Could not register assembly {currentAssembly.Location}");
+            }
         }
 
         private void UnRegisterAssembly()
         {
             var currentAssembly = GetType().Assembly;
             if (!_registrationService.UnregisterAssembly(currentAssembly))
+            {
                 throw new InstallException($"Could not Unregister assembly {currentAssembly.Location}");
+            }
         }
 
         [SecurityPermission(SecurityAction.Demand)]
